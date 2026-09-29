@@ -36,9 +36,10 @@ jobs:
           node-version: 20
           cache: npm
       - run: npm ci
-      # 不设置 VITE_API_BASE_URL：应用以本地模式运行，数据仅存访问者浏览器
-      - name: Build (local mode, no cloud API)
+      - name: Build (with cloud API, same as production)
         run: npm run build
+        env:
+          VITE_API_BASE_URL: https://inventory-api.kakahealthy.cn/bio-reagent-inventory
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
